@@ -1,0 +1,16 @@
+--- !ruby/object:Hangman
+lives: 2
+scaffold:
+- "     --------"
+- "        |"
+- "        O"
+- "       -|-"
+- "       / \\"
+letters:
+- E
+- L
+incorrect_letters:
+- A
+- S
+- T
+word: RUBEL
