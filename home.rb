@@ -1,7 +1,7 @@
 require 'sinatra'
 #require 'sinatra/reloader'
 require './hangman.rb'
-require 'YAML'
+require 'yaml'
 
 enable :sessions
 
