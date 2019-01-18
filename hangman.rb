@@ -1,7 +1,7 @@
 require 'yaml'
 class Hangman
 
-  attr_reader :hasWon, :lives, :letters, :incorrect_letters
+  attr_reader :hasWon, :lives, :letters, :incorrect_letters, :word
 
 
   def initialize
@@ -28,22 +28,30 @@ class Hangman
     if @incorrect_letters.include?(letter) or @letters.include?(letter)
       message << "You already guessed that letter.\n<BR>"
     elsif letter =~ /[A-Z]/
-      message << "You guessed \"#{letter}\""
+      message << "You guessed \"#{letter}\"<BR>"
       if @word.include? letter
-        message << "That's right! Well done..."
+        message << "That's right! Well done...<BR>"
         @letters << letter
-        hasWon = true if @word.split('').all? {|chr| @letters.include?(chr)}
+        @hasWon = true if @word.split('').all? {|chr| @letters.include?(chr)}
       else
         @lives -= 1
-        message << "That's wrong!\n"
+        message << "That's wrong!\n<BR>"
         @incorrect_letters << letter
       end
     else
-      message << "That's not a letter"
+      message << "That's not a letter<BR>"
     end
-    message << "You have #{@lives} lives left."
-    message << "Already guessed: #{incorrect_letters.join(', ')}"
-
+    message << "You have #{@lives} lives left.<BR>"
+    if incorrect_letters.size > 0
+      message << "Already guessed: #{incorrect_letters.join(', ')}<BR>"
+    end
+    word = "WORD: "
+    @word.each_char do |chr|
+      word << (@letters.include?(chr) && chr ? chr : '_')
+      word << ' '
+    end
+    word << "<BR><BR>"
+    word + message
   end
 
   def printLetters()
@@ -53,11 +61,7 @@ class Hangman
     end
     display << "\n<BR>"
 
-    display << "WORD: "
-    @word.each_char do |chr|
-      display << (@letters.include?(chr) && chr ? chr : '_')
-      display << ' '
-    end
+
     display
   end
 

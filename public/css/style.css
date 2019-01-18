@@ -1,0 +1,24 @@
+body {
+  background-color: #DDEEFF;
+  font-family: Arial,sans-serif;
+}
+
+.display  {
+  width:80%;
+  height: 150px;
+  text-align: center;
+  padding: 10px
+}
+
+.message {
+  width:80%;
+  margin: 2% 34%;
+}
+
+.button {
+  color: #8BC;
+}
+
+.button:hover {
+  color: #47B;
+}
